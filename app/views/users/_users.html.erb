@@ -1,0 +1,45 @@
+<h2>User info</h2>
+<% if user.image.attached? %>
+  <%= image_tag user.image, size: "100x100" %>
+<% else %>
+  <%= image_tag 'doraemon.png', size: "100x100" %>
+<% end %>
+<table class="table">
+  <tbody>
+    <tr>
+      <th>
+        <p>name</p>
+      </th>
+      <th>
+        <p><%= user.name %></p>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <p>introduction</p>
+      </th>
+      <th>
+        <p><%= user.introduction %></p>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do%>
+  <i class="fas fa-user-cog" aria-hidden="true"></i>
+<%end%>
+
+<div>
+  <h2>New book</h2>
+  <%= form_with model: book do |f| %>
+    <div>
+      <h6>Title</h6>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <h6>Opinion</h6>
+      <%= f.text_area :body %>
+    </div>
+    <%= f.submit 'Create Book', class: "btn btn-success"  %>
+  <% end %>
+</div>

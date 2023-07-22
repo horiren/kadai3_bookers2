@@ -2,36 +2,35 @@
   <main>
     <div class="container px-5 px-sm-0">
       <div class="row">
+        
         <div class="col-md-3">
-          <%= render 'users/users', {book: @book, user: @users} %>
+          <%= render 'users/users', {book: @book, user: @user} %>
         </div>
         <div class="col-md-8 offset-md-1">
-          <h2>Books</h2>
+          <h2>Users</h2>
           <table class="table table-hover table-inverse">
             <thead>
               <tr>
-                <td></td>
-                <th>Title</th>
-                <th>Opinion</th>
+                <th>image</th>
+                <th>name</th>
                 <th colspan="3"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td></td>
-                <% @books.each do |book| %>
+                <% @users.each do |user| %>
                   <td>
-                    <% if book.image.attached? %>
-                      <%= image_tag book.image, size: "100x100" %>
+                    <% if user.image.attached? %>
+                      <%= image_tag user.image, size: "100x100" %>
                     <% else %>
                       <%= image_tag 'doraemon.png', size: "100x100" %>
                     <% end %>
                   </td>
                   <td>
-                    <p><%= book.title %></p>
+                    <p><%= user.name %></p>
                   </td>
                   <td>
-                    <p><%= book.opinion %></p>
+                    <%= link_to "show", user_path(user.id) %>
                   </td>
                 <%end%>
               </tr>

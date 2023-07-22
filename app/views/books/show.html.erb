@@ -1,0 +1,39 @@
+<body>
+  <main>
+    <div class="container px-5 px-sm-0">
+      <div class="row">
+        <div class="col-md-3">
+          <%= render 'users/users', {book: @book, user: @users} %>
+        </div>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail</h2>
+          <table class="table table-hover table-inverse">
+            <tbody>
+              <tr>
+                <td></td>
+                
+                  <td>
+                    <% if @user.image.attached? %>
+                      <%= image_tag user.image, size: "100x100" %>
+                    <% else %>
+                      <%= image_tag 'doraemon.png', size: "100x100" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <p><%= @book.title %></p>
+                  </td>
+                  <td>
+                    <p><%= @book.body %></p>
+                  </td>
+                  <td>
+                    
+                  </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
