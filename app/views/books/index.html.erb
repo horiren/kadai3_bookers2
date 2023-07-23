@@ -1,40 +1,46 @@
 <body>
   <main>
     <div class="container px-5 px-sm-0">
+      <%= render 'books/error', book: @book %>
       <div class="row">
         <div class="col-md-3">
-          <%= render 'users/users', {book: @book, user: @users} %>
+          <%= render 'users/users', {book: @book, user: @user} %>
         </div>
         <div class="col-md-8 offset-md-1">
           <h2>Books</h2>
           <table class="table table-hover table-inverse">
             <thead>
               <tr>
-                <td></td>
+                <th></th>
                 <th>Title</th>
                 <th>Opinion</th>
                 <th colspan="3"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <% @books.each do |book| %>
+              <% @books.each do |book| %>
+                <tr>
                   <td>
-                    <% if book.image.attached? %>
-                      <%= image_tag book.image, size: "100x100" %>
+                    <% if book.user.profile_image.attached? %>
+                      <%= link_to user_path(book.user.id) do%>
+                        <%= image_tag book.user.profile_image, size: "100x100" %>
+                      <%end%>
                     <% else %>
-                      <%= image_tag 'doraemon.png', size: "100x100" %>
+                      <%= link_to user_path(book.user.id) do%>
+                        <%= image_tag 'doraemon.png', size: "100x100" %>
+                      <%end%>
                     <% end %>
                   </td>
                   <td>
-                    <p><%= book.title %></p>
+                    <span>
+                      <%= link_to book.title, book_path(book.id) %>
+                    </span>
                   </td>
                   <td>
-                    <p><%= book.opinion %></p>
+                    <p><%= book.body %></p>
                   </td>
-                <%end%>
-              </tr>
+                </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
